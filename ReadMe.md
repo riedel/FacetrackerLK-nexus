@@ -1,4 +1,4 @@
-This is a windows-specific standalone camera mouse using the facetrackerLK plugin of [AsTeRICS] (https://github.com/asterics/AsTeRICS).
+This is a windows-specific standalone camera mouse using the facetrackerLK plugin of [AsTeRICS]  (https://github.com/asterics/AsTeRICS) with support for the nexus.
 
 For general information about the organization of the whole repository, read the top-level [README file](https://github.com/asterics/P4AllBuildingBlocks/blob/master/README.md).
 
