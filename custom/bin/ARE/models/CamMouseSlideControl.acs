@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<model xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" modelName="C:\Users\riedel.TECO\Code\AsTeRICS\P4AllBuildingBlocks\CameraInput\FacetrackerLK-nexus\custom\bin\ARE\models\CamMouseSlideControl.acs_2016_4_13_22_53" version="20130320">
+  <components>
+    <component id="Switch to Camera Mouse" type_id="asterics.modelSwitcher">
+      <description>The ModelSwitcher plugin can be used to deploy and start a model via incoming event or model name</description>
+      <ports>
+        <inputPort portTypeID="modelName">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="model" value="CamMouseNexus.acs" />
+      </properties>
+      <layout>
+        <posX>1026</posX>
+        <posY>385</posY>
+      </layout>
+    </component>
+    <component id="FacetrackerLK.1" type_id="asterics.FacetrackerLK">
+      <description>Webcamera-based face tracking sensor</description>
+      <ports>
+        <outputPort portTypeID="noseX">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="noseY">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="chinX">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="chinY">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="cameraSelection" value="0" />
+        <property name="cameraResolution" value="1" />
+        <property name="cameraDisplayUpdate" value="100" />
+        <property name="cameraProfile" value="" />
+      </properties>
+      <layout>
+        <posX>0</posX>
+        <posY>141</posY>
+      </layout>
+      <gui>
+        <posX>8010</posX>
+        <posY>8565</posY>
+        <width>2000</width>
+        <height>1500</height>
+      </gui>
+    </component>
+    <component id="Integrate. Mous Position" type_id="asterics.Integrate">
+      <description>Integration with upper and lower bounds and reset</description>
+      <ports>
+        <inputPort portTypeID="in">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="out">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="resetValue" value="540" />
+        <property name="upperLimit" value="1080" />
+        <property name="lowerLimit" value="0" />
+        <property name="wrapAround" value="false" />
+      </properties>
+      <layout>
+        <posX>465</posX>
+        <posY>9</posY>
+      </layout>
+    </component>
+    <component id="Normalize to Range of 8" type_id="asterics.SignalTranslation">
+      <description>Translates signals from a certain input range to an output range</description>
+      <ports>
+        <inputPort portTypeID="in">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="setMax">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="setMin">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="out">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="inMin" value="0" />
+        <property name="inMax" value="800" />
+        <property name="outMin" value="1" />
+        <property name="outMax" value="8" />
+      </properties>
+      <layout>
+        <posX>621</posX>
+        <posY>11</posY>
+      </layout>
+    </component>
+    <component id="Nod Detect" type_id="asterics.Threshold">
+      <description>Threshold Level Processor</description>
+      <ports>
+        <inputPort portTypeID="in">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="out">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="thresholdHigh" value="80" />
+        <property name="thresholdLow" value="10" />
+        <property name="outputHigh" value="1" />
+        <property name="outputLow" value="0" />
+        <property name="operationMode" value="binary" />
+        <property name="eventCondition" value="0" />
+      </properties>
+      <layout>
+        <posX>199</posX>
+        <posY>385</posY>
+      </layout>
+    </component>
+    <component id="FastMoveForReset" type_id="asterics.Threshold">
+      <description>Threshold Level Processor</description>
+      <ports>
+        <inputPort portTypeID="in">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="out">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="thresholdHigh" value="200" />
+        <property name="thresholdLow" value="10" />
+        <property name="outputHigh" value="1" />
+        <property name="outputLow" value="0" />
+        <property name="operationMode" value="binary" />
+        <property name="eventCondition" value="0" />
+      </properties>
+      <layout>
+        <posX>150</posX>
+        <posY>7</posY>
+      </layout>
+    </component>
+    <component id="NexusConnector" type_id="asterics.NexusConnector">
+      <description>Nexus Connector</description>
+      <ports>
+        <inputPort portTypeID="A">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="B">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="C">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="D">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="outStrOne">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties />
+      <layout>
+        <posX>1271</posX>
+        <posY>24</posY>
+      </layout>
+    </component>
+    <component id="Wait for ZeroPos" type_id="asterics.EventDelay">
+      <description>Delalys events</description>
+      <ports />
+      <properties>
+        <property name="delay" value="500" />
+      </properties>
+      <layout>
+        <posX>278</posX>
+        <posY>7</posY>
+      </layout>
+    </component>
+    <component id="Map to Action_Enum" type_id="asterics.ConstantDispatcher">
+      <description>Send double values from chosen slot</description>
+      <ports>
+        <outputPort portTypeID="output">
+          <properties />
+        </outputPort>
+        <inputPort portTypeID="slotDispatch">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="number" value="20" />
+        <property name="delay" value="300" />
+        <property name="slot1" value="1" />
+        <property name="slot2" value="1" />
+        <property name="slot3" value="0" />
+        <property name="slot4" value="0" />
+        <property name="slot5" value="0" />
+        <property name="slot6" value="2" />
+        <property name="slot7" value="2" />
+        <property name="slot8" value="2" />
+        <property name="slot9" value="0" />
+        <property name="slot10" value="0" />
+        <property name="slot11" value="0" />
+        <property name="slot12" value="0" />
+        <property name="slot13" value="0" />
+        <property name="slot14" value="0" />
+        <property name="slot15" value="0" />
+        <property name="slot16" value="0" />
+        <property name="slot17" value="0" />
+        <property name="slot18" value="0" />
+        <property name="slot19" value="0" />
+        <property name="slot20" value="3" />
+        <property name="autosendSlot" value="0" />
+      </properties>
+      <layout>
+        <posX>831</posX>
+        <posY>15</posY>
+      </layout>
+    </component>
+    <component id="1" type_id="asterics.ConstantDispatcher">
+      <description>Send double values from chosen slot</description>
+      <ports>
+        <outputPort portTypeID="output">
+          <properties />
+        </outputPort>
+        <inputPort portTypeID="slotDispatch">
+          <properties />
+        </inputPort>
+      </ports>
+      <properties>
+        <property name="number" value="1" />
+        <property name="delay" value="300" />
+        <property name="slot1" value="1" />
+        <property name="slot2" value="0" />
+        <property name="slot3" value="0" />
+        <property name="slot4" value="0" />
+        <property name="slot5" value="0" />
+        <property name="slot6" value="0" />
+        <property name="slot7" value="0" />
+        <property name="slot8" value="0" />
+        <property name="slot9" value="0" />
+        <property name="slot10" value="0" />
+        <property name="slot11" value="0" />
+        <property name="slot12" value="0" />
+        <property name="slot13" value="0" />
+        <property name="slot14" value="0" />
+        <property name="slot15" value="0" />
+        <property name="slot16" value="0" />
+        <property name="slot17" value="0" />
+        <property name="slot18" value="0" />
+        <property name="slot19" value="0" />
+        <property name="slot20" value="0" />
+        <property name="autosendSlot" value="1" />
+      </properties>
+      <layout>
+        <posX>1184</posX>
+        <posY>173</posY>
+      </layout>
+    </component>
+    <component id="Timer.1" type_id="asterics.Timer">
+      <description>measures and outputs time in milliseconds and fires events (periodically or once)</description>
+      <ports>
+        <inputPort portTypeID="period">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="time">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="mode" value="0" />
+        <property name="repeatCounter" value="1" />
+        <property name="timePeriod" value="100" />
+        <property name="resolution" value="50" />
+        <property name="waitPeriod" value="0" />
+        <property name="autostart" value="false" />
+      </properties>
+      <layout>
+        <posX>1218</posX>
+        <posY>331</posY>
+      </layout>
+    </component>
+  </components>
+  <channels>
+    <channel id="binding.9">
+      <source>
+        <component id="FacetrackerLK.1" />
+        <port id="noseX" />
+      </source>
+      <target>
+        <component id="FastMoveForReset" />
+        <port id="in" />
+      </target>
+    </channel>
+    <channel id="binding.2">
+      <source>
+        <component id="Integrate. Mous Position" />
+        <port id="out" />
+      </source>
+      <target>
+        <component id="Normalize to Range of 8" />
+        <port id="in" />
+      </target>
+    </channel>
+    <channel id="binding.7">
+      <source>
+        <component id="FacetrackerLK.1" />
+        <port id="noseX" />
+      </source>
+      <target>
+        <component id="Integrate. Mous Position" />
+        <port id="in" />
+      </target>
+    </channel>
+    <channel id="binding.8">
+      <source>
+        <component id="Map to Action_Enum" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="NexusConnector" />
+        <port id="A" />
+      </target>
+    </channel>
+    <channel id="binding.5">
+      <source>
+        <component id="FacetrackerLK.1" />
+        <port id="noseY" />
+      </source>
+      <target>
+        <component id="Nod Detect" />
+        <port id="in" />
+      </target>
+    </channel>
+    <channel id="binding.10">
+      <source>
+        <component id="Normalize to Range of 8" />
+        <port id="out" />
+      </source>
+      <target>
+        <component id="Map to Action_Enum" />
+        <port id="slotDispatch" />
+      </target>
+    </channel>
+    <channel id="binding.11">
+      <source>
+        <component id="1" />
+        <port id="output" />
+      </source>
+      <target>
+        <component id="NexusConnector" />
+        <port id="B" />
+      </target>
+    </channel>
+  </channels>
+  <eventChannels>
+    <eventChannel id="output_reset">
+      <description />
+      <sources>
+        <source>
+          <component id="Wait for ZeroPos" />
+          <eventPort id="output" />
+        </source>
+      </sources>
+      <targets>
+        <target>
+          <component id="Integrate. Mous Position" />
+          <eventPort id="reset" />
+        </target>
+      </targets>
+    </eventChannel>
+    <eventChannel id="eventPosEdge_input">
+      <description />
+      <sources>
+        <source>
+          <component id="FastMoveForReset" />
+          <eventPort id="eventPosEdge" />
+        </source>
+      </sources>
+      <targets>
+        <target>
+          <component id="Wait for ZeroPos" />
+          <eventPort id="input" />
+        </target>
+      </targets>
+    </eventChannel>
+    <eventChannel id="eventPosEdge_switchModel">
+      <description />
+      <sources>
+        <source>
+          <component id="Nod Detect" />
+          <eventPort id="eventPosEdge" />
+        </source>
+      </sources>
+      <targets>
+        <target>
+          <component id="Switch to Camera Mouse" />
+          <eventPort id="switchModel" />
+        </target>
+      </targets>
+    </eventChannel>
+    <eventChannel id="eventPosEdge_dispatchSlot20">
+      <description />
+      <sources>
+        <source>
+          <component id="Nod Detect" />
+          <eventPort id="eventPosEdge" />
+        </source>
+      </sources>
+      <targets>
+        <target>
+          <component id="Map to Action_Enum" />
+          <eventPort id="dispatchSlot20" />
+        </target>
+      </targets>
+    </eventChannel>
+    <eventChannel id="periodFinished_dispatchSlot1">
+      <description />
+      <sources>
+        <source>
+          <component id="Timer.1" />
+          <eventPort id="periodFinished" />
+        </source>
+      </sources>
+      <targets>
+        <target>
+          <component id="1" />
+          <eventPort id="dispatchSlot1" />
+        </target>
+      </targets>
+    </eventChannel>
+  </eventChannels>
+  <modelGUI>
+    <Decoration>true</Decoration>
+    <Fullscreen>false</Fullscreen>
+    <AlwaysOnTop>false</AlwaysOnTop>
+    <ToSystemTray>true</ToSystemTray>
+    <ShopControlPanel>false</ShopControlPanel>
+    <AREGUIWindow>
+      <posX>485</posX>
+      <posY>7178</posY>
+      <width>3000</width>
+      <height>2222</height>
+    </AREGUIWindow>
+  </modelGUI>
+</model>
