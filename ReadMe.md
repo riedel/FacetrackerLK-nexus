@@ -1,5 +1,7 @@
 This is a windows-specific standalone camera mouse using the facetrackerLK plugin of [AsTeRICS]  (https://github.com/asterics/AsTeRICS) with support for the nexus.
 
+The BuildingBlock demonstrates a deep integration with the [Bootstrap carousel plugin](http://getbootstrap.com/javascript/#carousel).
+
 For general information about the organization of the whole repository, read the top-level [README file](https://github.com/asterics/P4AllBuildingBlocks/blob/master/README.md).
 
 ## Prerequisites and build instructions
@@ -13,6 +15,8 @@ git submodule add git@github.com:riedel/FacetrackerLK-nexus.git
 ```
 
 Please read the [prerequisites] (https://github.com/asterics/P4AllBuildingBlocks/blob/master/README.md#install-and-build-instructions-of-prerequisites) and [build instructions](https://github.com/asterics/P4AllBuildingBlocks#creating-single-camera-mouse-demo-with-ape-copy) for single demos.
+
+For the demo to work you should also have a website that uses Bootstrap and features a carousel component.
 
 ## Use in your website
 Add the following line to your website 
